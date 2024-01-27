@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TextInput, Button, ScrollView, Image } from 'react-native';
+import { Text, View, TextInput, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { withExpoSnack } from 'nativewind';
 import { useState } from 'react';
 import { styled } from 'nativewind';
@@ -8,7 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
-const StyledButton = styled(Button);
 const StyledTextInput = styled(TextInput);
 
 const HomeScreen = () => {
@@ -26,11 +25,11 @@ const HomeScreen = () => {
 
   return (
     <ScrollView style={{ flex: 1 }}>
-      <StyledView className='bg-blue-100'>
+      <StyledView className='bg-blue-100 h-screen'>
         <StyledView className='m-10'>
           <StyledText className='text-2xl pt-0'>Welcome😊</StyledText>
           <StyledText className='mt-2 text-3xl font-semibold'>BMI calculator</StyledText>
-          <StyledText className='pl-20 text-2xl mt-5'>Check your <StyledText className='font-bold'>BMI</StyledText></StyledText>
+          <StyledText className='pl-16 text-2xl mt-5'>Check your <StyledText className='font-bold'>BMI</StyledText></StyledText>
           <StyledView className='flex justify-center'>
             <StyledText className='mt-3 text-2xl'>Enter Your Height (cm):</StyledText>
             <StyledTextInput className='border-2 border-black rounded-md pl-5'
@@ -50,9 +49,14 @@ const HomeScreen = () => {
             />
           </StyledView>
 
-          <StyledButton title="Calculate BMI" className='mx-20 rounded-xl mt-20' onPress={calculateBMI} />
-{/* 
-          {bmi !== null && (
+          <TouchableOpacity
+            style={{ backgroundColor: 'blue', borderRadius: 10, padding: 15, alignItems: 'center', marginHorizontal: 20, marginTop: 20 }}
+            onPress={calculateBMI}
+          >
+            <StyledText style={{ color: 'white', fontSize: 18 }}>Calculate BMI</StyledText>
+          </TouchableOpacity>
+
+          {/* {bmi !== null && (
             <StyledText className='pt-5 pl-8'>Your BMI is: {bmi}</StyledText>
           )} */}
           <StyledView className='pl-20 h-60 w-60 mt-14'>
