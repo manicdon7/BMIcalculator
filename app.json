@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "acme",
     "name": "BMIcalculator",
     "slug": "BMIcalculator",
     "version": "1.0.0",
@@ -31,6 +32,9 @@
       "eas": {
         "projectId": "37f79a52-0a94-45dd-b716-bf889820558f"
       }
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
