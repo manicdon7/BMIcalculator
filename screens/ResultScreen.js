@@ -11,49 +11,42 @@ const ResultScreen = ({ route, navigation }) => {
   const StyledText = styled(Text);
   const StyledButton = styled(Button);
 
-  // const handleGoBack = () => {
-  //   navigation.goBack();
-  // };
-
-  // Helper function to categorize BMI into weight status
   const getWeightStatus = (bmiValue) => {
     if (bmiValue < 18.5) {
-      return 'Underweight 😔';
+      return { status: 'Underweight 😔', color: 'blue' };
     } else if (bmiValue >= 18.5 && bmiValue < 24.9) {
-      return 'Normal Weight 😊';
+      return { status: 'Normal Weight 😊', color: 'green' };
     } else if (bmiValue >= 25 && bmiValue < 29.9) {
-      return 'Overweight 😐';
+      return { status: 'Overweight 😐', color: 'orange' };
     } else {
-      return 'Obese 😮';
+      return { status: 'Obese 😮', color: 'red' };
     }
   };
 
-  const weightStatus = getWeightStatus(parseFloat(bmi));
+  const { status, color } = getWeightStatus(parseFloat(bmi));
 
   return (
-    <ScrollView style={{flex:1}}>
-    <StyledView className='bg-blue-100 h-screen'>
-      {/* <StyledView>
-        <StyledButton onPress={handleGoBack} title='Back'>
-          Back
-        </StyledButton>
-      </StyledView> */}
-      {bmi !== null && (
-        <>
-          <StyledText className='pt-40 font-semibold text-xl text-center text-blue-600'>Your BMI is:
+    <ScrollView style={{ flex: 1 }}>
+      <StyledView className={`bg-${color}-100 h-screen`}>
+        {bmi !== null && (
+          <>
+            <StyledText className='pt-40 font-semibold text-xl text-center text-blue-600'>
+              Your BMI is:
             </StyledText>
-          <StyledText className='font-bold text-6xl text-center mt-5'>
-            {bmi}
+            <StyledText className={`font-bold text-6xl text-center mt-5 text-${color}-700`}>
+              {bmi}
             </StyledText>
-          <StyledText className='pt-5 text-center'>Weight Status: {weightStatus}</StyledText>
-        </>
-      )}
+            <StyledText className={`pt-5 text-center text-${color}-800`}>
+              Weight Status: {status}
+            </StyledText>
+          </>
+        )}
 
-      <StyledView className='pl-20 mt-40'>
-        <Image source={img} alt='image' />
+        <StyledView className='pl-20 mt-40'>
+          <Image source={img} alt='image' />
+        </StyledView>
       </StyledView>
-    </StyledView>
-      </ScrollView>
+    </ScrollView>
   );
 };
 

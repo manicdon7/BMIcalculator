@@ -5,10 +5,10 @@
     "slug": "BMIcalculator",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/bmi.png",
+    "icon": "./assets/bmi_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/loading-bar.png",
+      "image": "./assets/full.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,7 +20,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/bmi.png",
+        "foregroundImage": "./assets/bmi_logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.manikandan05.BMIcalculator"

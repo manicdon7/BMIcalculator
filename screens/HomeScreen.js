@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, TextInput, ScrollView, Image, TouchableOpacity } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { withExpoSnack } from 'nativewind';
-import { useState } from 'react';
 import { styled } from 'nativewind';
 import img from '../assets/Group 1.png';
 import { useNavigation } from '@react-navigation/native';
@@ -14,20 +14,25 @@ const HomeScreen = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [bmi, setBMI] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const navigation = useNavigation(); // Move this inside the component
+  const navigation = useNavigation();
 
   const calculateBMI = () => {
-    const bmiValue = (weight / ((height / 100) * (height / 100))).toFixed(2);
-    setBMI(bmiValue);
-    navigation.navigate('Result', { bmi: bmiValue });
+    setLoading(true); 
+    setTimeout(() => {
+      const bmiValue = (weight / ((height / 100) * (height / 100))).toFixed(2);
+      setBMI(bmiValue);
+      setLoading(false); 
+      navigation.navigate('Result', { bmi: bmiValue });
+    }, 500); 
   };
 
   return (
     <ScrollView style={{ flex: 1 }}>
       <StyledView className='bg-blue-100 h-screen'>
         <StyledView className='m-10'>
-          <StyledText className='text-2xl pt-0'>Welcome😊</StyledText>
+          <StyledText className='text-xl pt-0'>Welcome😊</StyledText>
           <StyledText className='mt-2 text-3xl font-semibold'>BMI calculator</StyledText>
           <StyledText className='pl-16 text-2xl mt-5'>Check your <StyledText className='font-bold'>BMI</StyledText></StyledText>
           <StyledView className='flex justify-center'>
@@ -56,9 +61,11 @@ const HomeScreen = () => {
             <StyledText style={{ color: 'white', fontSize: 18 }}>Calculate BMI</StyledText>
           </TouchableOpacity>
 
-          {/* {bmi !== null && (
-            <StyledText className='pt-5 pl-8'>Your BMI is: {bmi}</StyledText>
-          )} */}
+          <Spinner
+            visible={loading}
+            textContent={'Loading...'}
+            textStyle={{ color: '#FFF' }}
+          />
           <StyledView className='pl-20 h-60 w-60 mt-14'>
             <Image source={img} alt='image' />
           </StyledView>
