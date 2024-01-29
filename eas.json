@@ -2,18 +2,16 @@
   "cli": {
     "version": ">= 5.4.0"
   },
-    "build": {
-      "development": {
-        "developmentClient": true,
-        "distribution": "internal"
-      },
-      "preview": {
-        "distribution": "internal"
-      },
-      "production": {
-        "distribution": "internal"
-      }
-    },  
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {}
+  }, 
   "submit": {
     "production": {}
   }
